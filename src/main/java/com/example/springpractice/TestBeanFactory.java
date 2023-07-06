@@ -14,7 +14,13 @@ import org.springframework.context.annotation.Configuration;
 
 
 public class TestBeanFactory {
-
+    /**
+     * BeanFactory不会做的事
+     * 不会主动调用BeanFactory处理器
+     * 不会主动添加Bean后处理器
+     * 不会主动初始化单例
+     * 不会解析beanFactory
+     */
     public static void main(String[] args) {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         //根据Bean的定义去创建Bean对象(class,scope,初始化,销毁)
@@ -28,7 +34,11 @@ public class TestBeanFactory {
             beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
         });
         //此时未进行依赖注入 需要internalAutowiredAnnotationProcessor(Bean的后处理器) 针对bean的生命周期的各个阶段进行扩展
-        beanFactory.getBeansOfType(BeanPostProcessor.class).values().forEach(beanFactory::addBeanPostProcessor);
+        beanFactory.getBeansOfType(BeanPostProcessor.class).values().forEach(beanPostProcessor -> {
+            System.out.println(">>>>"+beanPostProcessor);
+            //其中默认AutowiredAnnotationBeanPostProcessor优先于CommonAnnotationBeanPostProcessor挂载
+            beanFactory.addBeanPostProcessor(beanPostProcessor);
+        });
         for(String name:beanFactory.getBeanDefinitionNames()){
             System.out.println(name);
         }
