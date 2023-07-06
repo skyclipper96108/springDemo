@@ -1,4 +1,4 @@
-package com.example.springpractice.beanFactoryDemo;
+package com.example.springpractice.module1;
 
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;

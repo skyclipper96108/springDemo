@@ -1,4 +1,4 @@
-package com.example.springpractice.beanFactoryDemo;
+package com.example.springpractice.module1;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

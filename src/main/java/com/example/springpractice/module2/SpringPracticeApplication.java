@@ -1,4 +1,4 @@
-package com.example.springpractice.lifeCycle;
+package com.example.springpractice.module2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
